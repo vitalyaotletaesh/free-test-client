@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import AppRouter from "./components/AppRouter";
+import NavBar from "./components/NavBar";
+import {getMe} from "./redux/features/auth/authSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const role = useSelector((state) => state.auth.role)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getMe())
+    }, [dispatch])
+
+    return (
+        <BrowserRouter>
+            <NavBar role={role}/>
+            <AppRouter/>
+        </BrowserRouter>
+    );
 }
 
 export default App;

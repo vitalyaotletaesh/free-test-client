@@ -1,0 +1,53 @@
+.slider {
+    margin: 200px auto;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+
+.slide {
+    border: 1px solid black;
+    border-radius: 10px;
+    flex: 1 0 100%;
+    position: relative;
+}
+
+.slideTitle {
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+}
+
+.arrows {
+    color: green;
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+    height: 100%;
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    z-index: 1;
+}
+
+.arrow {
+    height: 50px;
+    width: 50px;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.left {
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 5px;
+    transform: rotate(180deg);
+}
+
+.right {
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 5px;
+}
