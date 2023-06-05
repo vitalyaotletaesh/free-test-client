@@ -37,6 +37,12 @@ const Admin = () => {
                 <Card border={"light"} className="mx-lg-auto">
                     <table className="table">
                         <thead>
+                        <tr>
+                            <th>Test name</th>
+                            <th>Author</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {tests?.length > 0 ?
                             tests.map((test, index) => (
                                 <tr key={index}>
@@ -45,13 +51,8 @@ const Admin = () => {
                                 </tr>
                             ))
                             :
-                            <tr>
-                                <th>Test name</th>
-                                <th>Author</th>
-                            </tr>
+                            <tr></tr>
                         }
-                        </thead>
-                        <tbody>
                         </tbody>
                     </table>
                 </Card>
