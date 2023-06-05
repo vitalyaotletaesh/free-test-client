@@ -8,15 +8,17 @@ import {getAllQuestions} from "../redux/features/auth/testSlice";
 const Slider = () => {
     const dispatch = useDispatch()
     const questionIndex = useSelector((state) => state.test.questionIndex)
+    const testId = useSelector((state) => state.test.test.id)
     const question = useSelector((state) => state.test.question)
 
     useEffect(() => {
         const params = {
             limit: 1,
             slide: questionIndex,
+            testId: testId
         }
         dispatch(getAllQuestions(params))
-    }, [dispatch, questionIndex])
+    }, [dispatch, questionIndex, testId])
 
 
     return (
