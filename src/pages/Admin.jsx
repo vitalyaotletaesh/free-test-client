@@ -14,7 +14,7 @@ const Admin = () => {
             page: 0,
         }
         dispatch(getAllTests(params))
-    }, [tests])
+    }, [dispatch])
 
     const handleDeleteTest = (id) => {
         const {message} = axios.delete(`/test/delete/${id}`)
