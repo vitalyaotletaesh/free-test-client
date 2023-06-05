@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Col, Container} from "react-bootstrap";
+import {Button, Card, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllTests} from "../redux/features/auth/testSlice";
+import axios from "../utils/axios";
 
 const Admin = () => {
     const dispatch = useDispatch()
@@ -15,6 +16,11 @@ const Admin = () => {
         dispatch(getAllTests(params))
     }, [dispatch, tests])
 
+    const handleDeleteTest = (id) => {
+        const {message} = axios.delete(`/test/delete/${id}`)
+        alert(message)
+    }
+
     return (
         <Container className="d-flex">
             <Col md={6} className="mt-3">
@@ -22,8 +28,8 @@ const Admin = () => {
                     <table className="table">
                         <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Email</th>
+                            <th style={{color: "green"}}>Username</th>
+                            <th style={{color: "green"}}>Email</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,8 +44,9 @@ const Admin = () => {
                     <table className="table">
                         <thead>
                         <tr>
-                            <th>Test name</th>
-                            <th>Author</th>
+                            <th style={{color: "green"}}>Test name</th>
+                            <th style={{color: "green"}}>Author</th>
+                            <th style={{color: "green"}}>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,6 +55,15 @@ const Admin = () => {
                                 <tr key={index}>
                                     <th>{test.name}</th>
                                     <th>Author</th>
+                                    <th>
+                                        <Button
+                                            variant={"outline-danger"}
+                                            className="mt-1 w-50"
+                                            onClick={() => handleDeleteTest(test.id)}
+                                        >
+                                            Удалить
+                                        </Button>
+                                    </th>
                                 </tr>
                             ))
                             :
