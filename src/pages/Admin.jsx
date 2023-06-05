@@ -14,7 +14,7 @@ const Admin = () => {
             page: 0,
         }
         dispatch(getAllTests(params))
-    }, [dispatch, tests])
+    }, [dispatch])
 
     const handleDeleteTest = (id) => {
         const {message} = axios.delete(`/test/delete/${id}`)
@@ -23,23 +23,23 @@ const Admin = () => {
 
     return (
         <Container className="d-flex">
-            <Col md={6} className="mt-3">
-                <Card border={"light"} className="mx-lg-auto">
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th style={{color: "green"}}>Username</th>
-                            <th style={{color: "green"}}>Email</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            {/*<Col md={6} className="mt-3">*/}
+            {/*    <Card border={"light"} className="mx-lg-auto">*/}
+            {/*        <table className="table">*/}
+            {/*            <thead>*/}
+            {/*            <tr>*/}
+            {/*                <th style={{color: "green"}}>Username</th>*/}
+            {/*                <th style={{color: "green"}}>Email</th>*/}
+            {/*            </tr>*/}
+            {/*            </thead>*/}
+            {/*            <tbody>*/}
 
-                        </tbody>
-                    </table>
-                </Card>
-            </Col>
+            {/*            </tbody>*/}
+            {/*        </table>*/}
+            {/*    </Card>*/}
+            {/*</Col>*/}
 
-            <Col md={6} className="mt-3 m-lg-3">
+            <Col md={12} className="mt-3 m-lg-3">
                 <Card border={"light"} className="mx-lg-auto">
                     <table className="table">
                         <thead>
@@ -58,7 +58,7 @@ const Admin = () => {
                                     <th>
                                         <Button
                                             variant={"outline-danger"}
-                                            className="mt-1 w-50"
+                                            className="mt-1 w-100"
                                             onClick={() => handleDeleteTest(test.id)}
                                         >
                                             Удалить
