@@ -13,10 +13,15 @@ const GuestTest = ({category}) => {
         setTest(tests[0])
     }, [tests])
 
+    useEffect(() => {
+        console.log(test)
+    }, [test])
+
+
     return (
         <Col md={4} className="mx-lg-auto" onClick={() => navigate(TEST_ROUTE + '/' + test?.id)}>
             <Card style={{width:400, cursor: 'pointer'}} border={"light"} className="mx-lg-auto">
-                <Image width={400} height={400} src={process.env.REACT_APP_API_URL || 'http://localhost:4444/' + '/' + test?.img}/>
+                <Image width={400} height={400} src={process.env.REACT_APP_API_URL + test?.img || 'http://localhost:4444/' + test?.img}/>
                 <div className="text-center mt-2">
                     {test?.name}
                 </div>

@@ -17,7 +17,7 @@ const TestStart = () => {
             <div className={styles.stylesWrapper}>
                 <div className={styles.startSection}>
                     <div className={styles.stylesImage}>
-                        <Image src={process.env.REACT_APP_API_URL || 'http://localhost:4444/' + test?.img}
+                        <Image src={process.env.REACT_APP_API_URL + test?.img || 'http://localhost:4444/' + test?.img}
                                className={styles.image}
                         />
                     </div>
