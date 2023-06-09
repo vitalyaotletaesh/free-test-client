@@ -34,7 +34,7 @@ const NavBar = ({role}) => {
                             variant={"outline-light"}
                             className="ms-lg-2"
                             onClick={() => navigate(ADMIN_ROUTE)}
-                            style={role === 'ADMIN' ? {visibility: 'visible'} : {visibility: 'hidden'}}
+                            style={role === 'ADMIN' ? {display: "inline"} : {display: "none"}}
                         >
                             Админ панель
                         </Button>
