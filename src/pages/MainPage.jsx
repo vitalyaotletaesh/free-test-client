@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import TestList from "../components/TestList";
 import {useDispatch, useSelector} from "react-redux";
 import CategoryBar from "../components/CategoryBar";
 import Pages from "../components/Pages";
+import {setQuestionIndex, setQuestionIndexNull} from "../redux/features/auth/testSlice";
 
 const MainPage = () => {
+    const dispatch = useDispatch()
+    dispatch(setQuestionIndexNull())
+
     return (
         <Container>
             <Row className="mt-2">

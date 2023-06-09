@@ -11,8 +11,9 @@ import {
     LOGIN_ROUTE,
     TEST_ROUTE,
     MAIN_PAGE_ROUTE,
-    REGISTER_ROUTE
+    REGISTER_ROUTE, HOME_ROUTE
 } from "./utils/consts"
+import Home from "./pages/Home";
 
 export const authRoutes = [
     {
@@ -45,5 +46,9 @@ export const publicRoutes = [
     {
         path: MAIN_PAGE_ROUTE,
         Component: MainPage
+    },
+    {
+        path: HOME_ROUTE,
+        Component: Home
     },
 ]

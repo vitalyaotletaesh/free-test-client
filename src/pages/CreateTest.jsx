@@ -6,24 +6,25 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "../utils/axios";
 import {useNavigate} from "react-router-dom";
 import {ACCOUNT_ROUTE} from "../utils/consts";
-import {getAllCategories} from "../redux/features/auth/testSlice";
+import {getAllCategories, setQuestionIndexNull} from "../redux/features/auth/testSlice";
 
 const CreateTest = () => {
     const navigate = useNavigate()
     const [questions, setQuestions] = useState([])
-    const [category, setCategory] = useState('Все')
     const [dataIsEmpty, setDataIsEmpty] = useState(true)
     const [formIsValid, setFormIsValid] = useState(false)
     const testName = useInput('', {isEmpty: true})
     const [file, setFile] = useState(null)
     const dispatch = useDispatch()
+    const categories = useSelector((state) => state.test.categories)
+    const [category, setCategory] = useState(2)
+    const [showAnnotation, setShowAnnotation] = useState(false)
+    const userId = useSelector((state) => state.auth.user.id)
 
     useEffect(() => {
         dispatch(getAllCategories())
+        dispatch(setQuestionIndexNull())
     }, [])
-
-    const categories = useSelector((state) => state.test.categories)
-    const userId = useSelector((state) => state.auth.user.id)
 
     // Отправка запроса на создание теста
     const handleSubmit = async () => {
@@ -32,6 +33,7 @@ const CreateTest = () => {
         formData.append('categoryId', category)
         formData.append('img', file)
         formData.append('userId', userId)
+        formData.append('showAnnotation', showAnnotation)
 
         const {data} = await axios.post('/test/create', formData)
 
@@ -45,8 +47,17 @@ const CreateTest = () => {
                 correct_answer: question.correctAnswer,
                 testId: data.id,
             }
-            await axios.post('/question/create', addQuestion)
+            const questionData = await axios.post('/question/create', addQuestion)
+
+            const annotation = {
+                name: question.annotation,
+                questionId: questionData.data.id,
+            }
+
+            await axios.post('/annotation/create', annotation)
+            await axios.post('/statistic/create', {questionId: questionData.data.id})
         }
+
         questions.map((question, index) => (
             handleCreateQuestion(question, index)
         ))
@@ -92,6 +103,7 @@ const CreateTest = () => {
         value.answer2 === '' ? setDataIsEmpty(true) : setDataIsEmpty(false)
         value.answer3 === '' ? setDataIsEmpty(true) : setDataIsEmpty(false)
         value.answer4 === '' ? setDataIsEmpty(true) : setDataIsEmpty(false)
+        value.annotation === '' ? setDataIsEmpty(true) : setDataIsEmpty(false)
         value.correctAnswer === '' ? setDataIsEmpty(true) : setDataIsEmpty(false)
     }
 
@@ -103,6 +115,7 @@ const CreateTest = () => {
             answer2: '',
             answer3: '',
             answer4: '',
+            annotation: '',
             correctAnswer: '',
         }
 
@@ -119,6 +132,7 @@ const CreateTest = () => {
             answer2: data.answer2,
             answer3: data.answer3,
             answer4: data.answer4,
+            annotation: data.annotation,
             correctAnswer: data.correctAnswer,
         };
 
@@ -148,12 +162,14 @@ const CreateTest = () => {
                         value={category}
                         onChange={categoryHandler}>
                         {categories?.length > 0 ? (categories.map((category, index) => (
-                                    <option
-                                        key={index}
-                                        value={category.id}
-                                    >
-                                        {category.name}
-                                    </option>
+                                    category.name !== 'Все' && (
+                                        <option
+                                            key={index}
+                                            value={category.id}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    )
                                 ))
                             ) :
                             <option
@@ -168,6 +184,13 @@ const CreateTest = () => {
                         type="file"
                         accept=".png, .jpg, .jpeg"
                         onChange={(e) => handleFile(e)}
+                    />
+                    <Form.Check
+                        className="mt-3"
+                        inline
+                        type='checkbox'
+                        label={'Показывать пояснение к ответу'}
+                        onChange={() => setShowAnnotation(!showAnnotation)}
                     />
 
 

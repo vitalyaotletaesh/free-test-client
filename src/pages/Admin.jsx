@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllTests} from "../redux/features/auth/testSlice";
+import {getAllTests, setQuestionIndex, setQuestionIndexNull} from "../redux/features/auth/testSlice";
 import axios from "../utils/axios";
 
 const Admin = () => {
     const dispatch = useDispatch()
     const tests = useSelector((state) => state.test.tests)
+
+    dispatch(setQuestionIndexNull())
 
     useEffect(() => {
         const params = {

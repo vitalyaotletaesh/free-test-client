@@ -5,6 +5,7 @@ import {LOGIN_ROUTE, MAIN_PAGE_ROUTE, REGISTER_ROUTE} from "../utils/consts";
 import {useDispatch, useSelector} from "react-redux";
 import {checkIsAuth, loginUser, registerUser} from "../redux/features/auth/authSlice";
 import {useInput} from "../utils/customHooks/registerHooks";
+import {setQuestionIndex, setQuestionIndexNull} from "../redux/features/auth/testSlice";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -17,6 +18,8 @@ const Login = () => {
     const password = useInput('', {isEmpty: true, minLength: 5, maxLength: 10})
     const passwordRepeat = useInput('', {isEmpty: true, minLength: 5, isEquals: password.value})
     const username = useInput('', {isEmpty: true, minLength: 5})
+
+    dispatch(setQuestionIndexNull())
 
     useEffect(() => {
         if (isAuth) {

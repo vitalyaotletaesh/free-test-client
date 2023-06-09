@@ -8,6 +8,7 @@ const QuestionContainer = ({index, getData}) => {
     const answer2 = useInput('', {isEmpty: true})
     const answer3 = useInput('', {isEmpty: true})
     const answer4 = useInput('', {isEmpty: true})
+    const annotation = useInput('', {isEmpty: true})
     const [correctAnswer, setCorrectAnswer] = useState('')
 
     useEffect(() => {
@@ -17,10 +18,11 @@ const QuestionContainer = ({index, getData}) => {
             answer2: answer2.value,
             answer3: answer3.value,
             answer4: answer4.value,
+            annotation: annotation.value,
             correctAnswer,
         }
         getData(index, data)
-    }, [questionName.value, answer1.value, answer2.value, answer3.value, answer4.value, correctAnswer])
+    }, [questionName.value, answer1.value, answer2.value, answer3.value, answer4.value, correctAnswer, annotation.value])
 
     return (
         <>
@@ -115,6 +117,17 @@ const QuestionContainer = ({index, getData}) => {
                     value={answer4.value}
                     onChange={e => answer4.onChange(e)}
                     onBlur={e => answer4.onBlur(e)}
+                />
+            </div>
+            {(annotation.isDirty && annotation.isEmpty) &&
+                <div style={{color: "red"}}>Поле не может быть пустым</div>}
+            <div className="d-flex flex-row justify-content-between">
+                <Form.Control
+                    className="mt-3"
+                    placeholder="Пояснение к ответу"
+                    value={annotation.value}
+                    onChange={e => annotation.onChange(e)}
+                    onBlur={e => annotation.onBlur(e)}
                 />
             </div>
         </>

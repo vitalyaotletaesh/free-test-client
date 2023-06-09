@@ -16,8 +16,9 @@ const UserItem = ({setData, setField, setOpenModal, setValidations}) => {
     return (
         <>
 
-            <Col className="mt-3 m-5 p-2">
-                <Card border={"light"} className="mx-lg-auto">
+            <Col className="mt-3 m-5">
+                <h2 className="text-center">Ваши данные</h2>
+                <Card border={"light"} className="mx-lg-auto mt-4">
                     <table className="table">
                         <thead>
                         <tr>
