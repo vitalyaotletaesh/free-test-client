@@ -36,7 +36,6 @@ const CreateTest = () => {
         formData.append('showAnnotation', showAnnotation)
 
         const {data} = await axios.post('/test/create', formData)
-
         const handleCreateQuestion = async (question, index) => {
             const addQuestion = {
                 name: question.questionText,
@@ -48,20 +47,16 @@ const CreateTest = () => {
                 testId: data.id,
             }
             const questionData = await axios.post('/question/create', addQuestion)
-
             const annotation = {
                 name: question.annotation,
                 questionId: questionData.data.id,
             }
-
             await axios.post('/annotation/create', annotation)
             await axios.post('/statistic/create', {questionId: questionData.data.id})
         }
-
         questions.map((question, index) => (
             handleCreateQuestion(question, index)
         ))
-
         navigate(ACCOUNT_ROUTE)
     }
 

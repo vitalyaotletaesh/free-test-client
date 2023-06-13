@@ -8,7 +8,9 @@ const Admin = () => {
     const dispatch = useDispatch()
     const tests = useSelector((state) => state.test.tests)
 
-    dispatch(setQuestionIndexNull())
+    useEffect(() => {
+        dispatch(setQuestionIndexNull())
+    }, [])
 
     useEffect(() => {
         const params = {
@@ -19,8 +21,13 @@ const Admin = () => {
     }, [dispatch])
 
     const handleDeleteTest = (id) => {
-        const {message} = axios.delete(`/test/delete/${id}`)
-        alert(message)
+        const params = {
+            limit: 0,
+            page: 0,
+        }
+        axios.delete(`/test/delete/${id}`).then(
+            dispatch(getAllTests(params))
+        )
     }
 
     return (

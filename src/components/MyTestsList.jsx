@@ -18,7 +18,7 @@ const MyTestsList = () => {
             <Row className="d-flex mx-lg-auto text-center mb-5">
                 <h2 className="mt-3">Ваши тесты</h2>
                 {tests.map(test =>
-                    <MyTestItem key={test.id} test={test}/>
+                    <MyTestItem key={test.id} test={test} id={user.id}/>
                 )}
             </Row>
         </>

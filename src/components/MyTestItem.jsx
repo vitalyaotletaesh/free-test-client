@@ -1,12 +1,16 @@
 import React from 'react';
 import {Button, Card, Col, Image} from "react-bootstrap";
 import axios from "../utils/axios";
+import {getAllTests, getMyTests} from "../redux/features/auth/testSlice";
+import {useDispatch, useSelector} from "react-redux";
 
-const MyTestItem = ({test}) => {
+const MyTestItem = ({test, id}) => {
+    const dispatch = useDispatch()
 
     const handleDeleteTest = () => {
-        const {message} = axios.delete(`/test/delete/${test.id}`)
-        alert(message)
+        axios.delete(`/test/delete/${test.id}`).then(
+            dispatch(getMyTests({id}))
+        )
     }
 
     return (

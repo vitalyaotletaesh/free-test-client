@@ -60,9 +60,10 @@ const UserItem = ({setData, setField, setOpenModal, setValidations}) => {
                                 <Button
                                     variant={"outline-success"}
                                     className="mt-3"
-                                    onClick={() => handleModal("Пароль", {isEmpty: true, minLength: 5, maxLength: 10})}
+                                    disabled={true}
+                                    // onClick={() => handleModal("Пароль", {isEmpty: true, minLength: 5, maxLength: 10})}
                                 >
-                                    Редактировать
+                                    В разработке
                                 </Button>
                             </th>
                         </tr>
