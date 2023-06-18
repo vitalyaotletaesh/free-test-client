@@ -21,8 +21,11 @@ const GuestTest = ({category}) => {
     return (
         <Col md={4} className="mx-lg-auto" onClick={() => navigate(TEST_ROUTE + '/' + testData?.id)}>
             <Card style={{width: 400, cursor: 'pointer'}} border={"light"} className="mx-lg-auto">
-                <Image width={400} height={400}
-                       src={(process.env.REACT_APP_API_URL + testData?.img) || ('http://localhost:4444/' + testData?.img)}/>
+                <Image width={400}
+                       height={400}
+                       src={process.env.REACT_APP_API_URL
+                           ? process.env.REACT_APP_API_URL + testData?.img
+                           : 'http://localhost:4444/' + testData?.img}/>
                 <div className="text-center mt-2">
                     {testData?.name}
                 </div>
