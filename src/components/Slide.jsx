@@ -178,6 +178,7 @@ const Slide = ({count}) => {
             async function fetchData() {
                 const res1 = await axios.post('test/incCompletes', {id: test.id})
             }
+
             fetchData().then()
             statistics.map((data, index) => (
                 calcStatistics(data, index)
@@ -185,16 +186,23 @@ const Slide = ({count}) => {
         }
     }, [statistics])
 
-    useEffect(() => {
-        if (statistics?.length === count) {
-            if (user) {
-                async function fetchData() {
-                    console.log(result)
-                    const res2 = await axios.post('attempt/create', {userId: user.id, testId: test.id, result: (result / count) * 100})
-                }
-                fetchData().then()
-            }
+    const saveResult = async () => {
+        async function fetchData() {
+            console.log(result)
+            const res2 = await axios.post('attempt/create', {
+                userId: user.id,
+                testId: test.id,
+                result: (result / count) * 100
+            })
         }
+
+        if (user) {
+            fetchData().then()
+        }
+    }
+
+    useEffect(() => {
+        statistics?.length === count && saveResult()
     }, [result])
 
     return (
@@ -202,9 +210,11 @@ const Slide = ({count}) => {
             <div className={styles.imageContainer}>
                 <div
                     className={styles.image}
-                    style={{backgroundImage: `url(${process.env.REACT_APP_API_URL
+                    style={{
+                        backgroundImage: `url(${process.env.REACT_APP_API_URL
                             ? process.env.REACT_APP_API_URL + test?.img
-                            : 'http://localhost:4444/' + test?.img})`}}
+                            : 'http://localhost:4444/' + test?.img})`
+                    }}
                 >
                 </div>
                 {!isTestEnd ?
@@ -249,7 +259,13 @@ const Slide = ({count}) => {
                                             <div className='d-flex flex-row justify-content-between'>
                                                 <div>{question?.answer1}</div>
                                                 <div>{annotation?.name}</div>
-                                                <div>{Math.round(statisticsFromDB.answerDone1 / statisticsFromDB.answersTotal * 100)}%</div>
+                                                <div>
+                                                    {statisticsFromDB.answersTotal !== 0 ?
+                                                        Math.round(statisticsFromDB.answerDone1 / statisticsFromDB.answersTotal * 100) + '%'
+                                                        :
+                                                        '0%'
+                                                    }
+                                                </div>
                                             </div>
                                         :
                                         <div>{question?.answer1}</div>
@@ -286,7 +302,13 @@ const Slide = ({count}) => {
                                             <div className='d-flex flex-row justify-content-between'>
                                                 <div>{question?.answer2}</div>
                                                 <div>{annotation?.name}</div>
-                                                <div>{Math.round(statisticsFromDB.answerDone2 / statisticsFromDB.answersTotal * 100)}%</div>
+                                                <div>
+                                                    {statisticsFromDB.answersTotal !== 0 ?
+                                                        Math.round(statisticsFromDB.answerDone2 / statisticsFromDB.answersTotal * 100) + '%'
+                                                        :
+                                                        '0%'
+                                                    }
+                                                </div>
                                             </div>
                                         :
                                         <div>{question?.answer2}</div>
@@ -323,7 +345,13 @@ const Slide = ({count}) => {
                                             <div className='d-flex flex-row justify-content-between'>
                                                 <div>{question?.answer3}</div>
                                                 <div>{annotation?.name}</div>
-                                                <div>{Math.round(statisticsFromDB.answerDone3 / statisticsFromDB.answersTotal * 100)}%</div>
+                                                <div>
+                                                    {statisticsFromDB.answersTotal !== 0 ?
+                                                        Math.round(statisticsFromDB.answerDone3 / statisticsFromDB.answersTotal * 100) + '%'
+                                                        :
+                                                        '0%'
+                                                    }
+                                                </div>
                                             </div>
                                         :
                                         <div>{question?.answer3}</div>
@@ -360,7 +388,13 @@ const Slide = ({count}) => {
                                             <div className='d-flex flex-row justify-content-between'>
                                                 <div>{question?.answer4}</div>
                                                 <div>{annotation?.name}</div>
-                                                <div>{Math.round(statisticsFromDB.answerDone4 / statisticsFromDB.answersTotal * 100)}%</div>
+                                                <div>
+                                                    {statisticsFromDB.answersTotal !== 0 ?
+                                                        Math.round(statisticsFromDB.answerDone4 / statisticsFromDB.answersTotal * 100) + '%'
+                                                        :
+                                                        '0%'
+                                                    }
+                                                </div>
                                             </div>
                                         :
                                         <div>{question?.answer4}</div>
@@ -387,7 +421,7 @@ const Slide = ({count}) => {
                                 <div className={styles.resultContainer}>
                                     <div>Тест окончен</div>
                                     <div style={{padding: 24, fontWeight: 400}}>
-                                        Ваш резульат: {(result / count) * 100}%
+                                        Ваш резульат: {Math.round((result / count) * 100)}%
                                     </div>
                                     <Button
                                         variant={'outline-success'}

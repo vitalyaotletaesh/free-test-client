@@ -4,6 +4,7 @@ import CreateTest from "./pages/CreateTest"
 import Login from "./pages/Login"
 import Test from "./pages/Test"
 import MainPage from "./pages/MainPage"
+import Results from "./pages/Results"
 import {
     ACCOUNT_ROUTE,
     ADMIN_ROUTE,
@@ -13,7 +14,7 @@ import {
     MAIN_PAGE_ROUTE,
     REGISTER_ROUTE,
     HOME_ROUTE,
-    ABOUT_TESTS_ROUTE
+    ABOUT_TESTS_ROUTE, RESULTS_ROUTE
 } from "./utils/consts"
 import Home from "./pages/Home";
 import AboutTests from "./pages/AboutTests";
@@ -30,6 +31,10 @@ export const authRoutes = [
     {
         path: CREATE_TEST_ROUTE,
         Component: CreateTest
+    },
+    {
+        path: RESULTS_ROUTE + '/:id',
+        Component: Results
     },
 ]
 
