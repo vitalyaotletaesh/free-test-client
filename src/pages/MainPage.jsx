@@ -13,7 +13,7 @@ const MainPage = () => {
     return (
         <Container>
             <Row className="mt-2">
-                <h1 className="text-center mt-3">Популярные тесты</h1>
+                <h1 className="text-center mt-3">Список тестов</h1>
                 <Col md={12}>
                     <CategoryBar/>
                 </Col>

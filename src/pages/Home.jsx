@@ -17,6 +17,15 @@ const Home = () => {
     const user = useSelector((state) => state.auth.user)
     let categoryId = useSelector((state) => state.test.categoryId)
 
+    useEffect(() => {
+        const params = {
+            categoryId: 2,
+            name: null,
+            limit: 1,
+        }
+        dispatch(getAllTests(params))
+        console.log(params)
+    }, [])
 
     useEffect(() => {
         const params = {
@@ -25,6 +34,7 @@ const Home = () => {
             limit: 1,
         }
         dispatch(getAllTests(params))
+        console.log(params)
     }, [dispatch, categoryId])
 
     return (
@@ -41,9 +51,9 @@ const Home = () => {
                         <Button
                             variant={"danger"}
                             onClick={() => navigate(!user ? REGISTER_ROUTE : CREATE_TEST_ROUTE)}
-                            style={{width: 250, height:75}}
+                            style={{width: 250, height:75, fontSize: 20}}
                         >
-                            Регистрация
+                            Создать тест
                         </Button>
                     </div>
                 </Container>
@@ -68,7 +78,7 @@ const Home = () => {
                 <div className={styles.flexContainer}>
                     <div className={styles.flexElement}>
                         <div className={styles.flexTitle}>
-                            Создавайте свои тесты для друзей или работы
+                            Пройдите быструю регистрацию и создайте свой первый тест
                         </div>
                         <div className={styles.btnStart2}>
                             <Button
@@ -76,13 +86,13 @@ const Home = () => {
                                 onClick={() => navigate(!user ? REGISTER_ROUTE : CREATE_TEST_ROUTE)}
                                 style={{width: 250, height:75}}
                             >
-                                СОЗДАТЬ ТЕСТ
+                                РЕГИСТРАЦИЯ
                             </Button>
                         </div>
                     </div>
                     <div className={styles.flexElement}>
                         <div className={styles.flexTitle}>
-                            Проходите уже созданные тесты
+                            Проходите уже созданные другими пользователями тесты
                         </div>
                         <div className={styles.btnStart2}>
                             <Button

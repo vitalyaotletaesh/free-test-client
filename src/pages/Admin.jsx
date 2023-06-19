@@ -7,6 +7,7 @@ import axios from "../utils/axios";
 const Admin = () => {
     const dispatch = useDispatch()
     const tests = useSelector((state) => state.test.tests)
+    const [isDeleted, setIsDeleted] = useState(false)
 
     useEffect(() => {
         dispatch(setQuestionIndexNull())
@@ -18,16 +19,17 @@ const Admin = () => {
             page: 0,
         }
         dispatch(getAllTests(params))
-    }, [dispatch])
+    }, [dispatch, isDeleted])
 
     const handleDeleteTest = (id) => {
         const params = {
             limit: 0,
             page: 0,
         }
-        axios.delete(`/test/delete/${id}`).then(
-            dispatch(getAllTests(params))
+        const newTests = axios.delete(`/test/delete/${id}`).then(
+            setIsDeleted(!isDeleted)
         )
+        console.log('qwe', newTests)
     }
 
     return (

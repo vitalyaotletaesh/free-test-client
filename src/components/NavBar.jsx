@@ -5,7 +5,7 @@ import {Button, Container} from 'react-bootstrap';
 import {Navbar} from 'react-bootstrap'
 import {Nav} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
-import {ACCOUNT_ROUTE, ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, MAIN_PAGE_ROUTE} from "../utils/consts";
+import {ABOUT_TESTS_ROUTE, ACCOUNT_ROUTE, ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, MAIN_PAGE_ROUTE} from "../utils/consts";
 
 const NavBar = ({role}) => {
     const isAuth = useSelector(checkIsAuth)
@@ -26,6 +26,13 @@ const NavBar = ({role}) => {
                     <Nav className="ml-auto">
                         <Button
                             variant={"outline-light"}
+                            onClick={() => navigate(ABOUT_TESTS_ROUTE)}
+                        >
+                            О тестах
+                        </Button>
+                        <Button
+                            variant={"outline-light"}
+                            className="ms-lg-2"
                             onClick={() => navigate(MAIN_PAGE_ROUTE)}
                         >
                             Тесты
@@ -57,6 +64,13 @@ const NavBar = ({role}) => {
                     <Nav className="ml-auto">
                         <Button
                             variant={"outline-light"}
+                            onClick={() => navigate(ABOUT_TESTS_ROUTE)}
+                        >
+                            О тестах
+                        </Button>
+                        <Button
+                            variant={"outline-light"}
+                            className="ms-lg-2"
                             onClick={() => navigate(MAIN_PAGE_ROUTE)}
                         >
                             Тесты

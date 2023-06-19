@@ -9,7 +9,7 @@ const CategoryBar = ({homePage}) => {
 
     useEffect(() => {
         dispatch(getAllCategories())
-        homePage && dispatch(setCategoryId(2))
+        homePage ? dispatch(setCategoryId(2)) : dispatch(setCategoryId(1))
     }, [])
 
     const categories = useSelector((state) => state.test.categories)

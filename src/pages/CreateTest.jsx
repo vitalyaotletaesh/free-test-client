@@ -174,7 +174,7 @@ const CreateTest = () => {
                             </option>
                         }
                     </Form.Select>
-                    <Form.Label className="mt-1">Изображение для теста</Form.Label>
+                    <Form.Label className="mt-1">Изображение для теста*</Form.Label>
                     <Form.Control
                         type="file"
                         accept=".png, .jpg, .jpeg"

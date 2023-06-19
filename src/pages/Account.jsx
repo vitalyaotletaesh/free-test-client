@@ -25,7 +25,7 @@ const Account = () => {
                 <Col md={6} className="mx-lg-auto">
                     <UserItem setData={setData} setField={setField} setOpenModal={setOpenModal}
                               setValidations={setValidations}/>
-                    <div style={{width: '100%'}} className='d-flex justify-content-end'>
+                    <div style={{width: '100%'}} className='d-flex pb-3'>
                         <Button
                             variant={"outline-dark"}
                             className="mt-4 mx-lg-auto"

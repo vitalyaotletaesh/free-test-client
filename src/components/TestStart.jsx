@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from "./SliderStyles.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Image} from "react-bootstrap";
-import {setQuestionIndex} from "../redux/features/auth/testSlice";
+import {getTest, setQuestionIndex} from "../redux/features/auth/testSlice";
+import {useParams} from "react-router-dom";
 
 const TestStart = () => {
+    const {id} = useParams()
     const test = useSelector((state) => state.test?.test)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getTest(id))
+    }, [dispatch])
 
     const handleStartTest = () => {
         dispatch(setQuestionIndex(1))

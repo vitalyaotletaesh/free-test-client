@@ -1,0 +1,31 @@
+body {
+    background-color: #f5f2f2;
+}
+
+.container {
+    margin: 20px auto;
+    padding: 50px;
+    width: 800px;
+    background-color: #ffffff;
+}
+
+.header {
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.headerSmall {
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.simpleText {
+    text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+}

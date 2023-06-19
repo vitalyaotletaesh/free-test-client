@@ -11,7 +11,7 @@ const GuestTest = ({category}) => {
 
     useEffect(() => {
         setTestData(tests[0])
-    }, [testData])
+    }, [tests])
 
     useEffect(() => {
         console.log(testData)
