@@ -10,7 +10,7 @@ const initialState = {
     myTests: [],
     page: 1,
     totalCount: null,
-    limit: 3,
+    limit: 6,
     isLoading: false,
     status: null,
 
