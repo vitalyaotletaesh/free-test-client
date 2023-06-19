@@ -25,7 +25,7 @@ const TestStart = () => {
                     <div className={styles.stylesImage}>
                         <Image
                             src={process.env.REACT_APP_API_URL
-                                ? process.env.REACT_APP_API_URL + test?.img
+                                ? process.env.REACT_APP_API_URL + '/' + test?.img
                                 : 'http://localhost:4444/' + test?.img}
                             className={styles.image}
                         />

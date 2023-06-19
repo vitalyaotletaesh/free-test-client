@@ -212,7 +212,7 @@ const Slide = ({count}) => {
                     className={styles.image}
                     style={{
                         backgroundImage: `url(${process.env.REACT_APP_API_URL
-                            ? process.env.REACT_APP_API_URL + test?.img
+                            ? process.env.REACT_APP_API_URL + '/' + test?.img
                             : 'http://localhost:4444/' + test?.img})`
                     }}
                 >

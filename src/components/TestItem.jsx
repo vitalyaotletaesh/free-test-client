@@ -14,7 +14,7 @@ const TestItem = ({test}) => {
                     width={300}
                     height={300}
                     src={process.env.REACT_APP_API_URL
-                        ? process.env.REACT_APP_API_URL + test.img
+                        ? process.env.REACT_APP_API_URL + '/' + test.img
                         : 'http://localhost:4444/' + test.img}/>
                 <div className="text-center mt-2">
                     {test.name}

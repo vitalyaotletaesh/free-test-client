@@ -24,7 +24,7 @@ const GuestTest = ({category}) => {
                 <Image width={400}
                        height={400}
                        src={process.env.REACT_APP_API_URL
-                           ? process.env.REACT_APP_API_URL + testData?.img
+                           ? process.env.REACT_APP_API_URL + '/' + testData?.img
                            : 'http://localhost:4444/' + testData?.img}/>
                 <div className="text-center mt-2">
                     {testData?.name}
