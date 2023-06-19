@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
-import {LOGIN_ROUTE, MAIN_PAGE_ROUTE, REGISTER_ROUTE} from "../utils/consts";
+import {HOME_ROUTE, LOGIN_ROUTE, MAIN_PAGE_ROUTE, REGISTER_ROUTE} from "../utils/consts";
 import {useDispatch, useSelector} from "react-redux";
 import {checkIsAuth, loginUser, registerUser} from "../redux/features/auth/authSlice";
 import {useInput} from "../utils/customHooks/registerHooks";
@@ -23,7 +23,7 @@ const Login = () => {
 
     useEffect(() => {
         if (isAuth) {
-            navigate(MAIN_PAGE_ROUTE)
+            navigate(HOME_ROUTE)
         }
     }, [isAuth, navigate])
 
