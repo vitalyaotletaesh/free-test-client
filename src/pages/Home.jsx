@@ -84,7 +84,7 @@ const Home = () => {
                             <Button
                                 variant={"danger"}
                                 onClick={() => navigate(!user ? REGISTER_ROUTE : CREATE_TEST_ROUTE)}
-                                style={{width: 250, height:75}}
+                                style={{width: 250, height:75, backgroundColor: '#000000'}}
                             >
                                 РЕГИСТРАЦИЯ
                             </Button>
@@ -98,7 +98,7 @@ const Home = () => {
                             <Button
                                 variant={"danger"}
                                 onClick={() => navigate(MAIN_PAGE_ROUTE)}
-                                style={{width: 250, height:75}}
+                                style={{width: 250, height:75, backgroundColor: '#000000'}}
                             >
                                 КАТАЛОГ ТЕСТОВ
                             </Button>
